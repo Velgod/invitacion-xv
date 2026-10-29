@@ -10,7 +10,7 @@
             color-scheme: light;
             --wine: #6B4C9A;
             --wine-dark: #A48AD4;
-            --rose: #6B4C9A;
+            --rose: #C5B4E3;
             --blush: #f8e8e8;
             --gold: #b58b50;
             --ink: #392b31;
@@ -45,6 +45,37 @@
                 linear-gradient(145deg, var(--wine), var(--wine-dark));
             transition: opacity .7s ease, visibility .7s ease;
         }
+        .lantern-field { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .lantern {
+            position: absolute;
+            width: 18px;
+            height: 25px;
+            border: 1px solid rgb(255 226 170 / 82%);
+            border-radius: 45% 45% 40% 40%;
+            background: linear-gradient(90deg, rgb(255 217 142 / 22%), rgb(255 238 190 / 92%), rgb(255 195 102 / 36%));
+            box-shadow: 0 0 12px 4px rgb(255 211 130 / 25%), 0 0 34px 10px rgb(255 211 130 / 12%);
+            animation: lantern-drift 5s ease-in-out infinite alternate;
+        }
+        .lantern::before, .lantern::after {
+            position: absolute;
+            left: 50%;
+            width: 8px;
+            height: 3px;
+            border: 1px solid rgb(255 226 170 / 75%);
+            content: "";
+            transform: translateX(-50%);
+        }
+        .lantern::before { top: -5px; border-radius: 50% 50% 0 0; }
+        .lantern::after { bottom: -4px; width: 5px; height: 2px; }
+        .lantern:nth-child(1) { top: 19%; left: 13%; animation-delay: -1s; }
+        .lantern:nth-child(2) { top: 33%; right: 15%; width: 14px; height: 20px; animation-delay: -3s; }
+        .lantern:nth-child(3) { right: 23%; bottom: 17%; width: 12px; height: 17px; animation-delay: -2s; }
+        .lantern:nth-child(4) { bottom: 22%; left: 19%; width: 15px; height: 21px; animation-delay: -4s; }
+        .lantern:nth-child(5) { top: 14%; right: 31%; width: 11px; height: 16px; animation-delay: -2.5s; }
+        @keyframes lantern-drift {
+            from { opacity: .58; transform: translateY(8px) rotate(-4deg); }
+            to { opacity: 1; transform: translateY(-9px) rotate(4deg); }
+        }
         .intro::before, .intro::after {
             position: absolute;
             width: min(78vw, 520px);
@@ -57,6 +88,12 @@
         .intro::after { width: min(68vw, 450px); }
         .intro.is-hidden { opacity: 0; visibility: hidden; }
         .intro-content { position: relative; z-index: 1; max-width: 520px; }
+        .floral-ornament {
+            margin: 18px 0 4px;
+            color: #f2d9a8;
+            font-size: 1.15rem;
+            letter-spacing: .45em;
+        }
         .intro-kicker, .eyebrow {
             color: var(--gold);
             font-size: .75rem;
@@ -104,7 +141,7 @@
             text-align: center;
             background:
                 radial-gradient(ellipse at 50% 42%, rgb(255 245 230 / 16%), transparent 38%),
-                linear-gradient(155deg, #6B4C9A, #A48AD4);
+                linear-gradient(155deg, var(--wine), var(--wine-dark));
         }
         .hero::before, .hero::after {
             position: absolute;
@@ -117,6 +154,7 @@
         .hero::after { width: min(78vw, 600px); }
         .hero-content { position: relative; z-index: 1; max-width: 700px; }
         .hero .eyebrow { color: #ead5b3; }
+        .hero .floral-ornament { margin: 0 0 8px; }
         .hero h1 {
             margin: 16px 0 0;
             color: #fff9f2;
@@ -208,18 +246,28 @@
 </head>
 <body class="locked">
     <div class="intro" id="intro">
+        <div class="lantern-field" aria-hidden="true">
+            <span class="lantern"></span><span class="lantern"></span><span class="lantern"></span>
+            <span class="lantern"></span><span class="lantern"></span>
+        </div>
         <div class="intro-content">
             <p class="intro-kicker">Una fecha para recordar</p>
+            <p class="floral-ornament" aria-hidden="true">✿ · ✧ · ✿</p>
             <h1 data-name>Abigail</h1>
             <p class="intro-subtitle">Mis XV años</p>
             <button class="open-button" id="openInvitation" type="button">✧ &nbsp; Abrir invitación</button>
-            <p class="intro-hint">Toca para descubrir todos los detalles</p>
+            <p class="intro-hint">Abre la invitación y deja que comience la magia</p>
         </div>
     </div>
 
     <header class="hero" id="inicio">
+        <div class="lantern-field" aria-hidden="true">
+            <span class="lantern"></span><span class="lantern"></span><span class="lantern"></span>
+            <span class="lantern"></span><span class="lantern"></span>
+        </div>
         <div class="hero-content">
             <p class="eyebrow">Con la bendición de Dios y de mi familia</p>
+            <p class="floral-ornament" aria-hidden="true">✿ · ✧ · ✿</p>
             <h1 data-name>Abigail</h1>
             <h2>Mis XV años</h2>
             <p>Agradezco a Dios por cada uno de los detalles para esta fiesta y por cada una de las personas que bendición mi vida he hicieron realidad este anhelo.</p>
