@@ -233,12 +233,30 @@
         .count-label { color: #ead5b3; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; }
 
         .schedule { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 760px; margin: 34px auto 0; }
-        .schedule-item { display: flex; align-items: center; gap: 16px; padding: 18px; border: 1px solid #eedfda; border-radius: 14px; background: white; }
+        .schedule-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 16px;
+            padding: 18px;
+            border: 1px solid #eedfda;
+            border-radius: 14px;
+            background: white;
+        }
         .schedule-time {
             min-width: 76px;
             color: var(--rose);
             font-family: var(--font-heading);
             font-size: 1.6rem;
+            text-align: left;
+        }
+        .schedule-item > span:last-child {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            text-align: left;
+            width: 100%;
         }
         .schedule-item strong { display: block; color: var(--wine-dark); }
         .schedule-item span:last-child { color: var(--muted); font-size: .9rem; }
@@ -365,10 +383,13 @@
                 <h2 class="section-heading">Itinerario del día</h2>
                 <p class="section-lead">Estos son algunos de los momentos especiales que compartiremos.</p>
                 <div class="schedule">
-                    <div class="schedule-item"><span class="schedule-time">17:00</span><span><strong>Ceremonia</strong><span>Un momento para agradecer</span></span></div>
-                    <div class="schedule-item"><span class="schedule-time">18:30</span><span><strong>Recepción</strong><span>¡Bienvenidos a la celebración!</span></span></div>
-                    <div class="schedule-item"><span class="schedule-time">20:00</span><span><strong>Vals y brindis</strong><span>Un recuerdo para toda la vida</span></span></div>
-                    <div class="schedule-item"><span class="schedule-time">20:30</span><span><strong>Cena y baile</strong><span>Que comience la fiesta</span></span></div>
+                    <div class="schedule-item"><span class="schedule-time">16:00</span><span><strong>LLEGADA</strong><span>Acomodo de Mesas</span></span></div>
+                    <div class="schedule-item"><span class="schedule-time">16:30</span><span><strong>CEREMONIA</strong><span>Un momento para agradecer</span></span></div>
+                    <div class="schedule-item"><span class="schedule-time">18:00</span><span><strong>CENA</strong><span>Un recuerdo para toda la vida</span></span></div>
+                    <div class="schedule-item"><span class="schedule-time">19:40</span><span><strong>VALS y BRINDIS</strong></span></div>
+                    <div class="schedule-item"><span class="schedule-time">20:20</span><span><strong>MESA DE DULCES</strong></span></div>
+                    <div class="schedule-item"><span class="schedule-time">21:15</span><span><strong>ESPECIAL ROSAS</strong></span></div>
+                    <div class="schedule-item"><span class="schedule-time">23:00</span><span><strong>PASTEL</strong></span></div>
                 </div>
             </div>
         </section>
