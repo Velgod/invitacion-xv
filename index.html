@@ -314,7 +314,13 @@
 
         .gift-card { max-width: 680px; margin: 28px auto 0; padding: 28px; border: 1px solid #eedfda; border-radius: 16px; background: white; }
         .gift-card p { margin: 0; color: var(--muted); }
-        .gift-details { margin-top: 18px !important; color: var(--wine) !important; font-weight: 700; }
+        .gift-details { margin: 18px 0 0 !important; color: var(--wine) !important; font-weight: 700; }
+        .gift-image {
+            display: block;
+            width: min(100%, 110px);
+            height: auto;
+            margin: 20px auto 0;
+        }
         .music-toggle {
             position: fixed;
             z-index: 20;
@@ -347,6 +353,12 @@
             font-family: var(--font-heading);
             font-size: 1.5rem;
             font-weight: 600;
+        }
+        .footer-image {
+            display: block;
+            width: min(100%, 270px);
+            height: auto;
+            margin: 0 auto 12px;
         }
 
         @media (max-width: 620px) {
@@ -478,12 +490,14 @@
                 <div class="gift-card">
                     <p>El mejor regalo es tu presencia, pero si deseaas tener un detalle conmigo te dejo esta opción:</p>
                     <p class="gift-details">LLUVIA DE SOBRES</p>
+                    <img class="gift-image" src="MEDIA/SOBRE.svg" alt="Sobre para lluvia de sobres">
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
+        <img class="footer-image" src="MEDIA/Recurso1.png" alt="">
         <strong>Con cariño, <span data-name>Valentina</span></strong>
         <p>Gracias por ser parte de mis XV años. ¡Te espero!</p>
     </footer>
