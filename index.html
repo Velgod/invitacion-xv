@@ -317,21 +317,28 @@
         .gift-details { margin-top: 18px !important; color: var(--wine) !important; font-weight: 700; }
         .music-toggle {
             position: fixed;
-            z-index: 5;
-            right: 18px;
-            bottom: 18px;
+            z-index: 20;
+            top: 20px;
+            left: 50%;
             display: none;
-            width: 72px;
-            height: 72px;
             align-items: center;
             justify-content: center;
-            border: 1px solid var(--gold);
-            border-radius: 50%;
+            gap: 10px;
+            width: min(340px, calc(100vw - 32px));
+            min-height: 48px;
+            padding: 10px 20px;
+            border: 1px solid rgba(255, 239, 201, 0.7);
+            border-radius: 999px;
             color: white;
-            background: var(--wine);
-            box-shadow: 0 5px 18px rgb(0 0 0 / 18%);
+            background: rgba(107, 76, 154, 0.82);
+            box-shadow: 0 8px 22px rgb(0 0 0 / 15%);
             cursor: pointer;
-            font-size: 1.8rem;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            transform: translateX(-50%);
+            backdrop-filter: blur(6px);
         }
         .music-toggle.is-visible { display: inline-flex; }
         footer { padding: 30px 20px; color: var(--muted); text-align: center; background: #fcf2ef; }
@@ -381,7 +388,7 @@
             <p class="floral-ornament" aria-hidden="true">✿ · ✧ · ✿</p>
             <h1 data-name>Abigail</h1>
             <h2>Mis XV años</h2>
-            <p>Agradezco a Dios por cada uno de los detalles para esta fiesta y por cada una de las personas que bendición mi vida he hicieron realidad este anhelo.</p>
+            <p>Agradezco a Dios por cada uno de los detalles para esta fiesta y por cada una de las personas que bendijeron mi vida he hicieron realidad este anhelo.</p>
             <p class="hero-date" data-event-date>15 de noviembre de 2026 · 18:00 h</p>
             <a class="scroll-cue" href="#cuenta-regresiva">Descubre los detalles &nbsp; ↓</a>
         </div>
@@ -482,7 +489,7 @@
     </footer>
 
     <audio id="backgroundMusic" src="musica.mp3" loop preload="none"></audio>
-    <button class="music-toggle" id="musicToggle" type="button" aria-label="Reproducir música" title="Reproducir música">♫</button>
+    <button class="music-toggle" id="musicToggle" type="button" aria-label="Reproducir música" title="Reproducir música">♫ Reproducir música</button>
 
     <script>
         // Personaliza estos datos para configurar la invitación.
@@ -556,12 +563,24 @@
 
         const music = document.querySelector("#backgroundMusic");
         const musicToggle = document.querySelector("#musicToggle");
+
+        const updateMusicButton = () => {
+            if (music.paused) {
+                musicToggle.innerHTML = "♫ Reproducir música";
+                musicToggle.setAttribute("aria-label", "Reproducir música");
+                musicToggle.title = "Reproducir música";
+            } else {
+                musicToggle.innerHTML = "❚❚ Pausar música";
+                musicToggle.setAttribute("aria-label", "Pausar música");
+                musicToggle.title = "Pausar música";
+            }
+        };
+
         musicToggle.addEventListener("click", async () => {
             if (music.paused) {
                 try {
                     await music.play();
-                    musicToggle.setAttribute("aria-label", "Pausar música");
-                    musicToggle.title = "Pausar música";
+                    updateMusicButton();
                 } catch (error) {
                     console.error("No se pudo reproducir la música. Verifica el archivo musica.mp3.", error);
                     musicToggle.setAttribute("aria-label", "No se pudo reproducir la música");
@@ -569,10 +588,11 @@
                 }
             } else {
                 music.pause();
-                musicToggle.setAttribute("aria-label", "Reproducir música");
-                musicToggle.title = "Reproducir música";
+                updateMusicButton();
             }
         });
+
+        updateMusicButton();
     </script>
 </body>
 </html>
