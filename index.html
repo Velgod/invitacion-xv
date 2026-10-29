@@ -11,8 +11,8 @@
         :root {
             color-scheme: light;
             --wine: #6B4C9A;
-            --wine-dark: #A48AD4;
-            --rose: #C5B4E3;
+            --wine-dark: #2f1b53;
+            --rose: #443361;
             --blush: #f8e8e8;
             --gold: #b58b50;
             --ink: #392b31;
@@ -85,16 +85,19 @@
             from { opacity: .58; transform: translateY(8px) rotate(-4deg); }
             to { opacity: 1; transform: translateY(-9px) rotate(4deg); }
         }
-        .intro::before, .intro::after {
+        .intro::before,
+        .hero::before {
             position: absolute;
-            width: min(78vw, 520px);
+            inset: 50% auto auto 50%;
+            width: min(86vw, 760px);
             aspect-ratio: 1;
-            border: 1px solid rgb(226 197 148 / 42%);
-            border-radius: 50%;
+            background: url("MEDIA/SOL.svg") center/contain no-repeat;
             content: "";
             pointer-events: none;
+            opacity: .5;
+            transform: translate(-50%, -50%);
+            filter: drop-shadow(0 0 18px rgb(255 232 160 / 20%));
         }
-        .intro::after { width: min(68vw, 450px); }
         .intro.is-hidden { opacity: 0; visibility: hidden; }
         .intro-content { position: relative; z-index: 1; max-width: 520px; }
         .floral-ornament {
@@ -120,6 +123,7 @@
         }
         .intro-subtitle {
             margin: 12px 0 28px;
+            color: rgba(255, 255, 255, 0.76);
             font-family: var(--font-heading);
             font-size: clamp(1.5rem, 3vw, 2.2rem);
             letter-spacing: .1em;
@@ -158,15 +162,15 @@
                 radial-gradient(ellipse at 50% 42%, rgb(255 245 230 / 16%), transparent 38%),
                 linear-gradient(155deg, var(--wine), var(--wine-dark));
         }
-        .hero::before, .hero::after {
+        .hero::before {
             position: absolute;
-            width: min(90vw, 690px);
+            width: min(80vw, 820px);
             aspect-ratio: 1;
-            border: 1px solid rgb(226 197 148 / 35%);
-            border-radius: 50%;
+            background: url("MEDIA/SOL.png") center/contain no-repeat;
             content: "";
+            opacity: .5;
+            filter: drop-shadow(0 0 18px rgb(255 232 160 / 20%));
         }
-        .hero::after { width: min(78vw, 600px); }
         .hero-content { position: relative; z-index: 1; max-width: 700px; }
         .hero .eyebrow { color: #ead5b3; }
         .hero .floral-ornament { margin: 0 0 8px; }
@@ -251,8 +255,20 @@
         }
         .location-name { margin: 0; font-weight: 700; }
         .location-address { min-height: 52px; margin: 5px 0 18px; color: var(--muted); white-space: pre-line; }
-        .location-actions { display: flex; flex-wrap: wrap; gap: 10px; }
-        .button { min-height: 42px; padding: 9px 16px; border-color: var(--wine); font-size: .9rem; }
+        .location-actions {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(110px, 1fr));
+            gap: 16px;
+            align-items: center;
+        }
+        .button {
+            min-height: 42px;
+            padding: 9px 16px;
+            border-color: var(--wine);
+            font-size: .9rem;
+            width: 100%;
+            text-align: center;
+        }
         .button-secondary { color: var(--wine); background: transparent; }
         .button-secondary:hover { color: white; }
 
