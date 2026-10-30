@@ -214,7 +214,35 @@
 
         main { overflow: hidden; }
         .section { padding: 86px 22px; }
-        .section-inner { width: min(100%, 960px); margin: 0 auto; }
+        .section-inner { position: relative; z-index: 1; width: min(100%, 960px); margin: 0 auto; }
+        .section-with-sun,
+        footer {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+        }
+        .section-with-sun::before,
+        .section-with-sun::after,
+        footer::before {
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            background-image: url("MEDIA/SOL.svg"), url("MEDIA/SOL.svg"), url("MEDIA/SOL.svg");
+            background-repeat: no-repeat;
+            content: "";
+            pointer-events: none;
+        }
+        .section-with-sun::before,
+        footer::before {
+            background-size: clamp(100px, 17vw, 190px), clamp(72px, 12vw, 135px), clamp(58px, 9vw, 100px);
+            background-position: 0% 8%, 100% 88%, 14% 52%;
+            opacity: .14;
+        }
+        .section-with-sun::after {
+            background-size: clamp(82px, 14vw, 155px), clamp(105px, 18vw, 200px), clamp(58px, 9vw, 100px);
+            background-position: 100% 6%, 0% 90%, 86% 48%;
+            opacity: .11;
+        }
         .section-heading {
             margin: 0 0 12px;
             color: var(--wine);
@@ -223,6 +251,24 @@
             font-weight: 600;
             line-height: 1.15;
         }
+        .section-heading::before,
+        .section-heading::after {
+            display: block;
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: .42em;
+            font-weight: 400;
+            letter-spacing: .3em;
+            line-height: 1;
+        }
+        .section-heading::before {
+            margin: 0 auto 10px;
+            content: "✦  ❧  ✦";
+        }
+        .section-heading::after {
+            margin: 12px auto 0;
+            content: "❧  ✥  ❧";
+        }
         .section-lead { max-width: 620px; margin: 0 auto; color: var(--muted); }
         .center { text-align: center; }
         .eyebrow { margin: 0 0 12px; }
@@ -230,8 +276,23 @@
 
         .countdown-section { color: white; background: var(--wine); }
         .countdown-section .section-heading { color: white; }
+        .countdown-section .section-heading::before,
+        .countdown-section .section-heading::after,
+        .rsvp-section .section-heading::before,
+        .rsvp-section .section-heading::after { color: #ead5b3; }
         .countdown-section .eyebrow { color: #ead5b3; }
         .countdown-section .section-lead { color: rgb(255 255 255 / 78%); }
+        .framed-photo {
+            border: 3px solid rgb(234 213 179 / 85%);
+            border-radius: 18px;
+            box-shadow: 0 10px 28px rgb(0 0 0 / 18%);
+        }
+        .countdown-photo {
+            display: block;
+            width: min(100%, 280px);
+            height: auto;
+            margin: 0 auto 28px;
+        }
         .countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; max-width: 630px; margin: 36px auto 0; }
         .count-unit { padding: 18px 8px; border: 1px solid rgb(255 255 255 / 25%); border-radius: 14px; background: rgb(255 255 255 / 7%); }
         .count-number {
@@ -303,10 +364,12 @@
 
         .dress-card { max-width: 650px; margin: 30px auto 0; padding: 26px; border: 1px solid #eedfda; border-radius: 16px; background: white; }
         .dress-card strong { color: var(--wine); }
+        .dress-code-icon { display: block; width: min(100%, 150px); height: auto; margin: 10px auto 16px; }
 
         .rsvp-section { color: white; text-align: center; background: linear-gradient(145deg, #6B4C9A, var(--wine-dark)); }
         .rsvp-section .section-heading { color: white; }
         .rsvp-section .eyebrow { color: #ead5b3; }
+        .rsvp-illustration { display: block; width: min(100%, 220px); height: auto; margin: 12px auto 20px; }
         .rsvp-section .section-lead { color: rgb(255 255 255 / 82%); }
         .rsvp-section .button { margin-top: 24px; border-color: #ead5b3; color: var(--wine-dark); background: #f5e5ca; }
         .rsvp-section .button:hover { background: white; }
@@ -407,8 +470,9 @@
     </header>
 
     <main>
-        <section class="section countdown-section center" id="cuenta-regresiva">
+        <section class="section countdown-section section-with-sun center" id="cuenta-regresiva">
             <div class="section-inner">
+                <img class="countdown-photo framed-photo" src="MEDIA/foto1.jpeg" alt="Fotografía de Abigail cuando era bebé">
                 <p class="eyebrow">¡Ya falta poco!</p>
                 <h2 class="section-heading">La cuenta regresiva</h2>
                 <p class="section-lead">Hoy comienza una nueva etapa llena de ilusiones, aprendizajes y nuevos caminos por recorrer. Este día, que tanto esperé con emoción, por fin ha llegado, y no hay mejor manera de vivirlo que compartiéndolo con las personas que más quiero. Gracias por ser parte de este momento tan especial e inolvidable para mi.</p>
@@ -423,7 +487,7 @@
             </div>
         </section>
 
-        <section class="section center" id="itinerario">
+        <section class="section section-with-sun center" id="itinerario">
             <div class="section-inner">
                 <p class="eyebrow">Celebremos juntos</p>
                 <h2 class="section-heading">Itinerario del día</h2>
@@ -440,7 +504,7 @@
             </div>
         </section>
 
-        <section class="section locations center" id="ubicacion">
+        <section class="section locations section-with-sun center" id="ubicacion">
             <div class="section-inner">
                 <p class="eyebrow">¿Dónde nos vemos?</p>
                 <h2 class="section-heading">Te esperamos en</h2>
@@ -459,21 +523,23 @@
                 <div class="dress-card">
                     <p class="eyebrow">Código de vestimenta</p>
                     <strong>FORMAL</strong>
+                    <img class="dress-code-icon" src="MEDIA/FORMAL_1.svg" alt="Código de vestimenta formal">
                     <p>Te agradecería reservar el color rosa y morado para la quinceañera.</p>
                 </div>
             </div>
         </section>
 
-        <section class="section rsvp-section" id="confirmacion">
+        <section class="section rsvp-section section-with-sun" id="confirmacion">
             <div class="section-inner">
                 <p class="eyebrow">Tu presencia es muy importante</p>
+                <img class="rsvp-illustration framed-photo" src="MEDIA/Recurso4.png" alt="Ilustración para la invitación">
                 <h2 class="section-heading">¿Nos acompañas?</h2>
                 <p class="section-lead">Por favor, confirma tu asistencia antes del <strong data-rsvp-deadline>1 de noviembre de 2026</strong>. Confirma únicamente el número de personas indicado en tu pase individual o familiar.</p>
                 <a class="button" id="rsvpLink" target="_blank" rel="noopener noreferrer">Confirmar por WhatsApp</a>
             </div>
         </section>
 
-        <section class="section center" id="regalos">
+        <section class="section section-with-sun center" id="regalos">
             <div class="section-inner">
                 <p class="eyebrow">Un detalle de corazón</p>
                 <h2 class="section-heading">Sugerencias de regalos</h2>
@@ -487,7 +553,7 @@
     </main>
 
     <footer>
-        <img class="footer-image" src="MEDIA/Recurso1.png" alt="">
+        <img class="footer-image framed-photo" src="MEDIA/Recurso1.png" alt="">
         <strong>Con cariño, <span data-name>Valentina</span></strong>
         <p>Gracias por ser parte de mis XV años. ¡Te espero!</p>
     </footer>
